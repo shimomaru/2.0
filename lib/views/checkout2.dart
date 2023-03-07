@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nle_app/constants/colors.dart';
 import 'package:nle_app/main.dart';
 import 'package:nle_app/models/food.dart';
+import 'package:nle_app/screens/widgets/notifications.dart';
 import 'package:nle_app/views/checkout.dart';
 import 'package:provider/provider.dart';
 
@@ -79,12 +80,15 @@ class _ListScrollViewState extends State<ListScrollView> {
                                   IconButton(
                                     icon: const Icon(Icons.close),
                                     onPressed: () {
-                                      userOrders.remove(userOrders[index]);
-                                      context.read<TotalPrice>().update();
-                                      setState(() {});
                                       context
                                           .read<FoodCount>()
                                           .reset(userOrders[index]);
+                                      userOrders.remove(userOrders[index]);
+                                      context.read<TotalPrice>().update();
+                                      context.read<FavFood>().peeQee();
+                                      context.read<Counter>().update();
+                                      context.read<FavFood>().update();
+                                      setState(() {});
                                     },
                                   )
                                 ],
@@ -121,13 +125,18 @@ class _ListScrollViewState extends State<ListScrollView> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        // context.read<Counter>().decrement();
-                                        // print(context.watch<Counter>().count);
                                         context
                                             .read<FoodCount>()
                                             .decrement(userOrders[index]);
-                                        context.read<FavFood>().peeQee(); /////
+                                        context.read<FavFood>().peeQee();
                                         context.read<Counter>().update();
+                                        context.read<FavFood>().update(); //
+                                        if (context
+                                                .read<FoodCount>()
+                                                .display(userOrders[index]) ==
+                                            0) {
+                                          userOrders.remove(userOrders[index]);
+                                        }
                                         setState(() {});
                                       },
                                       child: const Padding(
@@ -162,13 +171,9 @@ class _ListScrollViewState extends State<ListScrollView> {
                                         context
                                             .read<FoodCount>()
                                             .increment(userOrders[index]);
-                                        context.read<FavFood>().update();
                                         context.read<FavFood>().update(); ////
                                         context.read<Counter>().update();
                                         context.read<FavFood>().peeQee();
-                                        // context.read<FoodCount>().increment(widget.food);
-                                        // widget.food.quantity++;
-                                        // userOrders.add(widget.food);
                                         setState(() {});
                                       },
                                       child: const Padding(
@@ -220,6 +225,7 @@ class _NextButtonState extends State<NextButton> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FavFood>();
     return userOrders.isNotEmpty
         ? Container(
             color: Colors.transparent,
@@ -242,7 +248,12 @@ class _NextButtonState extends State<NextButton> {
                   fontSize: 18.0,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Notif.showBigTextNotification(
+                    title: 'Order confirmation',
+                    body: 'Order successful',
+                    fln: flutterLocalNotificationsPlugin);
+              },
             ),
           )
         : const Text('');

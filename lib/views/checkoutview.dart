@@ -8,50 +8,6 @@ import 'package:nle_app/views/checkout2.dart';
 import 'package:provider/provider.dart';
 import '../models/food.dart';
 
-class CheckOutVieww extends StatelessWidget {
-  final int selected;
-  final Function callback;
-  final PageController pageController;
-  final Food food;
-
-  const CheckOutVieww(
-    this.selected,
-    this.callback,
-    this.pageController,
-    this.food,
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    // final category = food.menu.keys.toList();
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: PageView(
-          controller: pageController,
-          onPageChanged: (index) => callback(index),
-          children: userOrders
-              .map((e) => ListView.separated(
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (context, index) => GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => DetailPage(
-                                userOrders[index],
-                              ),
-                            ),
-                          );
-                        },
-                        child: ListScrollView()),
-                    // FoodItem(stall.menu[category[selected]]![index])),
-                    separatorBuilder: (_, index) => const SizedBox(height: 15),
-                    itemCount: userOrders.length,
-                  ))
-              .toList()),
-    );
-  }
-}
-
 class CheckInfo extends StatefulWidget {
   const CheckInfo({super.key});
 
@@ -69,15 +25,32 @@ class _CheckInfoState extends State<CheckInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 65,
+        backgroundColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 24.0),
+          child: Container(
+            // ignore: prefer_const_constructors
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+            width: 40,
+            height: 40,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_outlined),
+              color: Colors.black,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Color(0xff453658),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
-            BackButton(
-              Icons.arrow_back_ios_outlined,
-              leftCallback: () => leftCall(), ////
-            ),
             Container(
               margin: const EdgeInsets.only(top: 40),
               padding: const EdgeInsets.symmetric(horizontal: 25),

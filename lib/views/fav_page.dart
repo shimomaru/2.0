@@ -16,15 +16,32 @@ class _FavPageState extends State<FavPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 65,
+        backgroundColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 24.0),
+          child: Container(
+            // ignore: prefer_const_constructors
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+            width: 40,
+            height: 40,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_outlined),
+              color: Colors.black,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Color(0xff453658),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
-            BackButton(
-              Icons.arrow_back_ios_outlined,
-              leftCallback: () => Navigator.of(context).pop(),
-            ),
             Container(
               margin: const EdgeInsets.only(top: 40),
               padding: const EdgeInsets.symmetric(horizontal: 25),

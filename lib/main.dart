@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nle_app/exceptions/exceptions.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/main_page.dart';
 import 'package:nle_app/screens/search_page.dart';
 import 'package:nle_app/views/checkoutview.dart';
 import 'package:nle_app/views/fav_page.dart';
 import 'package:nle_app/views/notification_page.dart';
+import 'package:nle_app/views/on_login.dart';
 import 'package:provider/provider.dart';
 import 'constants/routes.dart';
 
@@ -26,7 +26,7 @@ void main() {
 
 List<Food> userOrders = [];
 List<Food> favFood = [];
-List<int> orderPrices = [];
+List<int> notifications = [];
 
 class Counter with ChangeNotifier {
   // int _count = userOrders.length;
@@ -50,13 +50,6 @@ class Counter with ChangeNotifier {
 }
 
 class TotalPrice with ChangeNotifier {
-  // int pqProduct(Food food) {
-  //   int pq = food.quantity * food.price;
-  //   return pq;
-  // }
-
-  // int Order = userOrders.fold(0, (previousValue, element) => null)
-
   int _ordersTotalPrice = userOrders.fold(0, (a, element) => a + element.price);
 
   int get ordersTotalPrice => _ordersTotalPrice;
@@ -147,11 +140,17 @@ class FoodCount with ChangeNotifier {
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+
+  // This widget is the root of your application.
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -161,7 +160,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery',
-      home: MainPage(),
+      home: OnloginScreen(),
       routes: {
         cartRoute: (context) => CheckInfo(),
         searchRoute: (context) => SearchPage(),

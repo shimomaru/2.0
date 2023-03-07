@@ -25,16 +25,52 @@ class _StallPageState extends State<StallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 65,
+        backgroundColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 24.0),
+          child: Container(
+            // ignore: prefer_const_constructors
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+            width: 40,
+            height: 40,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_outlined),
+              color: Colors.black,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 24.0),
+            child: Container(
+              // ignore: prefer_const_constructors
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              width: 40,
+              height: 40,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.search_outlined,
+                  color: Colors.black,
+                ),
+                onPressed: () => Navigator.of(context).pushNamed(searchRoute),
+              ),
+            ),
+          ),
+        ],
+      ),
       backgroundColor: const Color(0xff392850), //kBackground,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppBar(
-            Icons.arrow_back_ios_outlined,
-            Icons.search_outlined,
-            leftCallback: () => Navigator.of(context).pop(),
-            rightCallback: () => Navigator.of(context).pushNamed(searchRoute),
-          ),
           StallInfo(
             stall: widget.stall,
           ), //

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nle_app/constants/colors.dart';
 import 'package:nle_app/main.dart';
 import 'package:nle_app/screens/widgets/notification_tiles.dart';
 import 'package:nle_app/screens/widgets/picture_tile.dart';
-import 'package:nle_app/views/checkout.dart';
-import 'package:provider/provider.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});

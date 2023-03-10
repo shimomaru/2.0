@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff392850),
+      backgroundColor: const Color(0xff392850), //blueAccent
       body: Column(
         children: <Widget>[
           const SizedBox(height: 110),

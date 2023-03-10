@@ -80,25 +80,18 @@ class _FoodQuantityState extends State<FoodQuantity> {
                   GestureDetector(
                     onTap: () {
                       if (context.read<Counter>().count != 0) {
-                        // context.read<Counter>().decrement();
-                        // widget.food.quantity--;
-                        // userOrders.remove(widget.food);
                         context.read<FoodCount>().decrement(widget.food);
-                        // context.read<Prices>().pricered(widget.food);
-                        // int valueP = widget.food.quantity * widget.food.price;
-                        // orderPrices.add(valueP);
-
                         setState(() {});
                       } else {
-                        // context.read()<Counter>();
+                        //return dialog exception
                       }
                     },
                     child: const Text(
                       '-',
                       style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white38),
                     ),
                   ),
                   Container(
@@ -108,12 +101,10 @@ class _FoodQuantityState extends State<FoodQuantity> {
                       color: Colors.white,
                     ),
                     child: Text(
-                      // counter().toString(),
                       context
                           .watch<FoodCount>()
                           .display(widget.food)
                           .toString(),
-                      // widget.food.quantity.toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -121,13 +112,11 @@ class _FoodQuantityState extends State<FoodQuantity> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // widget.food.quantity++;
                       if (userOrders.contains(widget.food)) {
-                        // context.read<Counter>().increment();
                         context.read<FoodCount>().increment(widget.food);
                         context.read<Counter>().update();
                       } else {
-                        userOrders.add(widget.food); ////
+                        userOrders.add(widget.food);
                         context.read<Counter>().update();
                         setState(() {});
                       }
@@ -137,6 +126,7 @@ class _FoodQuantityState extends State<FoodQuantity> {
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white38,
                       ),
                     ),
                   ),

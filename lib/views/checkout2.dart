@@ -163,6 +163,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                                             .toString(),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.white70,
                                         ),
                                       ),
                                     ),
@@ -171,7 +172,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                                         context
                                             .read<FoodCount>()
                                             .increment(userOrders[index]);
-                                        context.read<FavFood>().update(); ////
+                                        context.read<FavFood>().update();
                                         context.read<Counter>().update();
                                         context.read<FavFood>().peeQee();
                                         setState(() {});

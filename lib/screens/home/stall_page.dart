@@ -113,7 +113,7 @@ class _StallPageState extends State<StallPage> {
                   height: 10,
                   color: kBackground,
                   borderRadius: BorderRadius.circular(10),
-                  dotBorder: const DotBorder(
+                  dotBorder: DotBorder(
                     color: kPrimaryColor,
                     padding: 2,
                     width: 2,

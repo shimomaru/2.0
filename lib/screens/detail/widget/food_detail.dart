@@ -5,8 +5,11 @@ import 'package:nle_app/screens/detail/widget/food_quantity.dart';
 
 class FoodDetail extends StatelessWidget {
   final Food food;
+  final bool selected = false;
 
-  const FoodDetail(this.food);
+  const FoodDetail(
+    this.food,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class FoodDetail extends StatelessWidget {
           Row(
             children: const [
               Text(
-                'Ingredients',
+                'Variations',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -63,11 +66,11 @@ class FoodDetail extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      food.ingredients[index].values.first,
+                      food.variations[index].values.first,
                       width: 52,
                     ),
                     Text(
-                      food.ingredients[index].keys.first,
+                      food.variations[index].keys.first,
                     ),
                   ],
                 ),
@@ -75,7 +78,7 @@ class FoodDetail extends StatelessWidget {
               separatorBuilder: (_, index) => const SizedBox(
                 width: 15,
               ),
-              itemCount: food.ingredients.length,
+              itemCount: food.variations.length,
             ),
           ),
           const SizedBox(height: 30),

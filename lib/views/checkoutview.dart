@@ -61,15 +61,16 @@ class _CheckInfoState extends State<CheckInfo> {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             'Checkout',
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 26,
                               fontWeight: FontWeight.bold,
+                              color: Colors.red.shade300,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ],

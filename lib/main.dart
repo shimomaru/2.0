@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nle_app/models/food.dart';
+import 'package:nle_app/models/stall.dart';
 import 'package:nle_app/screens/main_page.dart';
 import 'package:nle_app/screens/search_page.dart';
 import 'package:nle_app/views/checkoutview.dart';
 import 'package:nle_app/views/fav_page.dart';
 import 'package:nle_app/views/notification_page.dart';
-import 'package:nle_app/views/on_login.dart';
 import 'package:provider/provider.dart';
 import 'constants/routes.dart';
 
@@ -22,6 +22,14 @@ void main() {
       child: MyApp(),
     ),
   );
+}
+
+bool openStall(Stall stall) {
+  if (stall.desc == 'Open') {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 List<Food> userOrders = [];
@@ -160,7 +168,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery',
-      home: OnloginScreen(),
+      home: MainPage(),
       routes: {
         cartRoute: (context) => CheckInfo(),
         searchRoute: (context) => SearchPage(),

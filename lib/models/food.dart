@@ -11,11 +11,11 @@ class Food {
   int pq;
   int quantity;
   bool favourited;
-  List<Map<String, String>> ingredients;
+  List<Map<String, String>> variations;
   String about;
   bool highlight;
   Food(this.imgUrl, this.desc, this.name, this.pq, this.waitTime, this.score,
-      this.price, this.quantity, this.ingredients, this.about, this.favourited,
+      this.price, this.quantity, this.variations, this.about, this.favourited,
       {this.highlight = false});
 
   int pqProduct(Food food) {
@@ -36,11 +36,11 @@ class Food {
         0,
         [
           {
-            'Flatbread': 'assets/images/flatbread-modified.png',
+            'Chicken': 'assets/images/flatbread-modified.png',
           },
-          {'Cabbage': 'assets/images/cabbb-modified.png'},
-          {'Chicken': 'assets/images/chicken-modified.png'},
-          {'Sauce': 'assets/images/sauce-modified.png'},
+          {'Beef': 'assets/images/cabbb-modified.png'},
+          {'Mexican': 'assets/images/chicken-modified.png'},
+          {'Suya': 'assets/images/sauce-modified.png'},
         ],
         'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
         highlight: true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nle_app/main.dart';
 import 'package:nle_app/models/stall.dart';
 
 class StallInfo extends StatelessWidget {
@@ -21,9 +22,10 @@ class StallInfo extends StatelessWidget {
                 children: [
                   Text(
                     stall.name,
-                    style: const TextStyle(
-                      fontSize: 25,
+                    style: TextStyle(
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
+                      color: Colors.red.shade300,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -64,20 +66,24 @@ class StallInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                stall.desc,
-                style: const TextStyle(fontSize: 16),
+                stall.desc, //
+                style: TextStyle(
+                  fontSize: 16,
+                  color: openStall(stall) ? Colors.green : Colors.red,
+                ),
               ),
               Row(
                 children: [
                   const Icon(
                     Icons.star_outlined,
-                    color: Colors.amber,
+                    color: Colors.amberAccent,
                   ),
                   Text(
                     '${stall.score}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.amber,
                     ),
                   ),
                   const SizedBox(width: 15),

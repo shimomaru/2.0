@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nle_app/main.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/models/stall.dart';
 import 'package:nle_app/screens/home/stall_page.dart';
@@ -35,7 +36,7 @@ class GridDashboard extends StatelessWidget {
       'W Sauce',
       'Stall',
       'assets/images/w_sauce-removebg.png',
-      'Open',
+      'Closed',
       4.5,
       {
         'Recommended': Food.generateRecommendedFoods1(),
@@ -139,10 +140,10 @@ class GridDashboard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     data.desc,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 10,
-                      color: Colors.white38,
+                      color: openStall(data) ? Colors.green : Colors.red,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -163,18 +164,3 @@ class GridDashboard extends StatelessWidget {
     );
   }
 }
-
-// class Item {
-//   String title;
-//   String subtitle;
-//   String event;
-//   String img;
-//   String view;
-//   Item({
-//     required this.title,
-//     required this.subtitle,
-//     required this.event,
-//     required this.img,
-//     required this.view,
-//   });
-// }

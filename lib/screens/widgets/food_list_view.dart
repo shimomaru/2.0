@@ -18,7 +18,7 @@ class FoodListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final menuList = stall.menu.values.toList();
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: PageView.builder(
           controller: pageController,
           onPageChanged: (index) => callback(index),

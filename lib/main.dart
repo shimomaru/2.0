@@ -35,6 +35,7 @@ bool openStall(Stall stall) {
 List<Food> userOrders = [];
 List<Food> favFood = [];
 List<int> notifications = [];
+List<Variation> selectedVars = [];
 
 class Counter with ChangeNotifier {
   // int _count = userOrders.length;

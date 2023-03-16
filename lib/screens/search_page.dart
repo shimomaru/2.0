@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nle_app/main.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/detail/detail.dart';
-import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -29,12 +27,10 @@ class _SearchPageState extends State<SearchPage> {
         1500,
         0,
         [
-          {
-            'Flatbread': 'assets/images/flatbread-modified.png',
-          },
-          {'Cabbage': 'assets/images/cabbb-modified.png'},
-          {'Chicken': 'assets/images/chicken-modified.png'},
-          {'Sauce': 'assets/images/sauce-modified.png'},
+          Variation('assets/images/chicken-modified.png', 'Chicken'),
+          Variation('assets/images/cabbb-modified.png', 'Beef'),
+          Variation('assets/images/flatbread-modified.png', 'Mexican'),
+          Variation('assets/images/sauce-modified.png', 'Suya'),
         ],
         'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
         true,

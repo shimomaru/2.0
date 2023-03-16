@@ -5,7 +5,27 @@ import 'package:nle_app/models/stall.dart';
 import 'package:nle_app/screens/home/stall_page.dart';
 
 class GridDashboard extends StatelessWidget {
-  final List<Stall> _stalls = [
+  final Food _food1 = Food(
+    'assets/images/sha-modified.png',
+    'Most Recommended',
+    'Shawarma',
+    0,
+    '15 min',
+    4.5,
+    1500,
+    0,
+    [
+      Variation('assets/images/cabbb-modified.png', 'Chicken'),
+      Variation('assets/images/chicken-modified.png', 'Beef'),
+      Variation('assets/images/flatbread-modified.png', 'Mexican'),
+      Variation('assets/images/sauce-modified.png', 'Suya'),
+    ],
+    'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
+    highlight: true,
+    false,
+  );
+
+  late final List<Stall> _stalls = [
     Stall(
       'Tray blazers',
       'Restaurant',
@@ -13,8 +33,8 @@ class GridDashboard extends StatelessWidget {
       'Open',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },
@@ -26,8 +46,8 @@ class GridDashboard extends StatelessWidget {
       'Open',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },
@@ -39,8 +59,8 @@ class GridDashboard extends StatelessWidget {
       'Closed',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },
@@ -52,8 +72,8 @@ class GridDashboard extends StatelessWidget {
       'Open',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },
@@ -65,8 +85,8 @@ class GridDashboard extends StatelessWidget {
       'Open',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },
@@ -78,8 +98,8 @@ class GridDashboard extends StatelessWidget {
       'Open',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },
@@ -91,8 +111,8 @@ class GridDashboard extends StatelessWidget {
       'Open',
       4.5,
       {
-        'Recommended': Food.generateRecommendedFoods1(),
-        'Popular': Food.generatePopularFoods1(),
+        'Recommended': _food1.generateRecommendedFoods1(),
+        'Popular': _food1.generatePopularFoods1(),
         'Smoothie': [],
         'Rice': [],
       },

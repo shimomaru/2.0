@@ -3,43 +3,48 @@ import 'package:nle_app/constants/colors.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/detail/widget/food_quantity.dart';
 
-class FoodDetail extends StatelessWidget {
+class FoodDetail extends StatefulWidget {
   final Food food;
-  final bool selected = false;
 
-  const FoodDetail(
-    this.food,
-  );
+  FoodDetail(this.food, {super.key});
+
+  @override
+  State<FoodDetail> createState() => _FoodDetailState();
+}
+
+class _FoodDetailState extends State<FoodDetail> {
+  bool selected = false;
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       color: kBackground,
       child: Column(
         children: [
           Text(
-            food.name,
+            widget.food.name,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildIconText(
                 Icons.access_time_outlined,
                 Colors.blue,
-                food.waitTime,
+                widget.food.waitTime,
               ),
               _buildIconText(
                 Icons.star_outlined,
                 Colors.amber,
-                food.score.toString(),
+                widget.food.score.toString(),
               ),
             ],
           ),
           const SizedBox(height: 30),
-          FoodQuantity(food),
+          FoodQuantity(widget.food),
           const SizedBox(height: 30),
           Row(
             children: const [
@@ -53,32 +58,47 @@ class FoodDetail extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Container(
+          SizedBox(
             height: 100,
-            child: ListView.separated(
+            child: ListView.builder(
+              itemCount: widget.food.variations.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      food.variations[index].values.first,
-                      width: 52,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (widget.food.variations[index].selected) {
+                      selectedIndex = index;
+                    } else {
+                      selectedIndex = index;
+                    }
+                    if (selectedIndex == index) {
+                      widget.food.selectedVar = widget.food.variations[index];
+                    }
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color:
+                          selectedIndex == index ? kPrimaryColor : Colors.white,
+                      borderRadius: BorderRadius.circular(40),
                     ),
-                    Text(
-                      food.variations[index].keys.first,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          widget.food.variations[index].imgURL,
+                          width: 52,
+                        ),
+                        Text(
+                          widget.food.variations[index].title,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-              separatorBuilder: (_, index) => const SizedBox(
-                width: 15,
-              ),
-              itemCount: food.variations.length,
             ),
           ),
           const SizedBox(height: 30),
@@ -95,7 +115,7 @@ class FoodDetail extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            food.about,
+            widget.food.about,
             style: const TextStyle(
               wordSpacing: 1.2,
               height: 1.5,
@@ -117,7 +137,7 @@ class FoodDetail extends StatelessWidget {
         ),
         Text(
           text,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ],
     );

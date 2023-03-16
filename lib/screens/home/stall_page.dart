@@ -7,7 +7,6 @@ import 'package:nle_app/screens/widgets/food_list_view.dart';
 import 'package:nle_app/screens/widgets/stall_info.dart';
 import 'package:provider/provider.dart';
 import '../../main.dart';
-import '../widgets/custom_app_bar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class StallPage extends StatefulWidget {
@@ -31,8 +30,7 @@ class _StallPageState extends State<StallPage> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 24.0),
           child: Container(
-            // ignore: prefer_const_constructors
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
             ),

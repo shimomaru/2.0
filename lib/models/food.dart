@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:nle_app/main.dart';
-
 class Food {
   String imgUrl;
   String desc;
@@ -11,7 +8,8 @@ class Food {
   int pq;
   int quantity;
   bool favourited;
-  List<Map<String, String>> variations;
+  List<Variation> variations;
+  Variation? selectedVar;
   String about;
   bool highlight;
   Food(this.imgUrl, this.desc, this.name, this.pq, this.waitTime, this.score,
@@ -23,7 +21,7 @@ class Food {
     return pq;
   }
 
-  static List<Food> generateRecommendedFoods1() {
+  List<Food> generateRecommendedFoods1() {
     return [
       Food(
         'assets/images/sha-modified.png',
@@ -35,12 +33,10 @@ class Food {
         1500,
         0,
         [
-          {
-            'Chicken': 'assets/images/flatbread-modified.png',
-          },
-          {'Beef': 'assets/images/cabbb-modified.png'},
-          {'Mexican': 'assets/images/chicken-modified.png'},
-          {'Suya': 'assets/images/sauce-modified.png'},
+          Variation('assets/images/cabbb-modified.png', 'Chicken'),
+          Variation('assets/images/chicken-modified.png', 'Beef'),
+          Variation('assets/images/flatbread-modified.png', 'Mexican'),
+          Variation('assets/images/sauce-modified.png', 'Suya'),
         ],
         'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
         highlight: true,
@@ -70,7 +66,7 @@ class Food {
     ];
   }
 
-  static List<Food> generatePopularFoods1() {
+  List<Food> generatePopularFoods1() {
     return [
       Food(
         'assets/images/smoothie-.png',
@@ -98,4 +94,11 @@ class Food {
 
 extension UserOrderTotalPrice on Food {
   int get totalPrice => price * quantity;
+}
+
+class Variation {
+  String title;
+  String imgURL;
+  bool selected = false;
+  Variation(this.imgURL, this.title);
 }

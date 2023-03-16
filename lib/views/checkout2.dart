@@ -38,19 +38,31 @@ class _ListScrollViewState extends State<ListScrollView> {
               itemBuilder: ((context, index) {
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
-                  height: 150,
+                  height: 160,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        width: 130,
-                        height: 130,
-                        child: Image.asset(userOrders[index].imgUrl,
-                            fit: BoxFit.fitHeight),
+                      Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            width: 130,
+                            height: 130,
+                            child: Image.asset(userOrders[index].imgUrl,
+                                fit: BoxFit.fitHeight),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            width: 60,
+                            height: 60,
+                            child: Image.asset(
+                                userOrders[index].selectedVar!.imgURL,
+                                fit: BoxFit.fitHeight),
+                          ),
+                        ],
                       ),
                       Expanded(
                         child: Container(
@@ -67,13 +79,12 @@ class _ListScrollViewState extends State<ListScrollView> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
+                                    padding: const EdgeInsets.only(top: 25.0),
                                     child: Text(
                                       userOrders[index].name,
                                       style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
-                                        height: 1.1,
                                       ),
                                     ),
                                   ),
@@ -93,12 +104,18 @@ class _ListScrollViewState extends State<ListScrollView> {
                                   )
                                 ],
                               ),
+                              Text(
+                                userOrders[index].selectedVar!.title,
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                    fontStyle: FontStyle.italic),
+                              ),
                               _buildIconText(
                                 Icons.access_time_outlined,
                                 Colors.blue,
                                 userOrders[index].waitTime,
                               ),
-                              const SizedBox(height: 5),
                               Row(
                                 children: [
                                   Text(

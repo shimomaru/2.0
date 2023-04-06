@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nle_app/constants/colors.dart';
+import 'package:nle_app/main.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/detail/widget/food_quantity.dart';
 
@@ -88,7 +89,7 @@ class _FoodDetailState extends State<FoodDetail> {
                     child: Column(
                       children: [
                         Image.asset(
-                          widget.food.variations[index].imgURL,
+                          widget.food.variations[index].imgURL.toString(),
                           width: 52,
                         ),
                         Text(

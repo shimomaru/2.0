@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nle_app/constants/colors.dart';
 import 'package:nle_app/main.dart';
-import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/widgets/notifications.dart';
 import 'package:nle_app/views/checkout.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +21,7 @@ class _ListScrollViewState extends State<ListScrollView> {
         ),
         Text(
           text,
-          style: TextStyle(fontSize: 12),
+          style: const TextStyle(fontSize: 12),
         ),
       ],
     );
@@ -59,8 +57,9 @@ class _ListScrollViewState extends State<ListScrollView> {
                             width: 60,
                             height: 60,
                             child: Image.asset(
-                                userOrders[index].selectedVar!.imgURL,
-                                fit: BoxFit.fitHeight),
+                              userOrders[index].selectedVar!.imgURL,
+                              fit: BoxFit.fitHeight,
+                            ),
                           ),
                         ],
                       ),
@@ -106,6 +105,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                               ),
                               Text(
                                 userOrders[index].selectedVar!.title,
+                                // usedVars[userOrders[index]]!.title,
                                 style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w300,

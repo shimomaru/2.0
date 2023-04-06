@@ -1,3 +1,22 @@
+class OrderedItem extends Food {
+  Variation selectVar;
+
+  OrderedItem(
+      this.selectVar,
+      super.imgUrl,
+      super.desc,
+      super.name,
+      super.pq,
+      super.waitTime,
+      super.score,
+      super.price,
+      super.quantity,
+      super.variations,
+      super.about,
+      super.favourited,
+      {super.highlight = false});
+}
+
 class Food {
   String imgUrl;
   String desc;

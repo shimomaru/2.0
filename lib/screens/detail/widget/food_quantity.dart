@@ -122,10 +122,6 @@ class _FoodQuantityState extends State<FoodQuantity> {
                           'Please select a variation',
                         );
                       } else {
-                        // for (var i = 0; i < checks2.length; i++) {
-                        //   var currentElement = checks2[i];
-                        //   if (currentElement == widget.food){}
-                        // }
                         if (selectedVars.contains(widget.food.selectedVar)) {
                           if (userOrders.contains(widget.food)) {
                             context.read<FoodCount>().increment(widget.food);
@@ -136,8 +132,23 @@ class _FoodQuantityState extends State<FoodQuantity> {
                             setState(() {});
                           }
                         } else {
-                          selectedVars.add(widget.food.selectedVar!);
+                          // Food newFood = Food(
+                          //   widget.food.imgUrl,
+                          //   widget.food.desc,
+                          //   widget.food.name,
+                          //   widget.food.pq,
+                          //   widget.food.waitTime,
+                          //   widget.food.score,
+                          //   widget.food.price,
+                          //   widget.food.quantity,
+                          //   widget.food.variations,
+                          //   widget.food.about,
+                          //   widget.food.favourited,
+                          // );
+                          selectedVars.add(widget.food.selectedVar);
+                          // userOrders.add(newFood);
                           userOrders.add(widget.food);
+                          context.read<FoodCount>().increment(widget.food);
                           context.read<Counter>().update();
                         }
                       }
@@ -253,46 +264,3 @@ class _FoodQuantityState extends State<FoodQuantity> {
     );
   }
 }
-
-List<Food> checks2 = [
-  Food(
-    'assets/images/sha-modified.png',
-    'Most Recommended',
-    'Shawarma',
-    0,
-    '15 min',
-    4.5,
-    1500,
-    0,
-    [
-      Variation('assets/images/cabbb-modified.png', 'Chicken'),
-      Variation('assets/images/chicken-modified.png', 'Beef'),
-      Variation('assets/images/flatbread-modified.png', 'Mexican'),
-      Variation('assets/images/sauce-modified.png', 'Suya'),
-    ],
-    'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
-    highlight: true,
-    false,
-  ),
-  Food(
-    'assets/images/smoothie-.png',
-    'Most Recommended',
-    'Smoothie',
-    0,
-    '7 min',
-    4.5,
-    1500,
-    0,
-    [
-      // {
-      //   'Flatbread': 'assets/images/flatbread-modified.png',
-      // },
-      // {'Cabbage': 'assets/images/cabbb-modified.png'},
-      // {'Chicken': 'assets/images/chicken-modified.png'},
-      // {'Sauce': 'assets/images/sauce-modified.png'},
-    ],
-    'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
-    highlight: true,
-    false,
-  ),
-];

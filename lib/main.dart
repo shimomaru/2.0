@@ -35,11 +35,11 @@ bool openStall(Stall stall) {
 List<Food> userOrders = [];
 List<Food> favFood = [];
 List<int> notifications = [];
-List<Variation> selectedVars = [];
+List<Variation?> selectedVars = [];
+Map<Food, Variation> usedVars = {};
+List<OrderedItem> orderUp = [];
 
 class Counter with ChangeNotifier {
-  // int _count = userOrders.length;
-
   int _count = userOrders.fold(
       0, (previousValue, element) => previousValue + element.quantity);
 

@@ -1,20 +1,25 @@
-class OrderedItem extends Food {
+class OrderedItem {
   Variation selectVar;
+  String imgUrl;
+  String name;
+  int pq;
+  String waitTime;
+  int price;
+  int quantity;
 
   OrderedItem(
-      this.selectVar,
-      super.imgUrl,
-      super.desc,
-      super.name,
-      super.pq,
-      super.waitTime,
-      super.score,
-      super.price,
-      super.quantity,
-      super.variations,
-      super.about,
-      super.favourited,
-      {super.highlight = false});
+    this.selectVar,
+    this.imgUrl,
+    this.name,
+    this.pq,
+    this.waitTime,
+    this.price,
+    this.quantity,
+  );
+  int pqProduct(OrderedItem orderedItem) {
+    pq = orderedItem.quantity * orderedItem.price;
+    return pq;
+  }
 }
 
 class Food {
@@ -28,7 +33,8 @@ class Food {
   int quantity;
   bool favourited;
   List<Variation> variations;
-  Variation? selectedVar;
+  Variation selectedVar =
+      Variation('assets/images/cabbb-modified.png', 'Chicken', 0);
   String about;
   bool highlight;
   Food(this.imgUrl, this.desc, this.name, this.pq, this.waitTime, this.score,
@@ -39,85 +45,17 @@ class Food {
     pq = food.quantity * food.price;
     return pq;
   }
-
-  List<Food> generateRecommendedFoods1() {
-    return [
-      Food(
-        'assets/images/sha-modified.png',
-        'Most Recommended',
-        'Shawarma',
-        0,
-        '15 min',
-        4.5,
-        1500,
-        0,
-        [
-          Variation('assets/images/cabbb-modified.png', 'Chicken'),
-          Variation('assets/images/chicken-modified.png', 'Beef'),
-          Variation('assets/images/flatbread-modified.png', 'Mexican'),
-          Variation('assets/images/sauce-modified.png', 'Suya'),
-        ],
-        'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
-        highlight: true,
-        false,
-      ),
-      Food(
-        'assets/images/smoothie-.png',
-        'Most Recommended',
-        'Smoothie',
-        0,
-        '7 min',
-        4.5,
-        1500,
-        0,
-        [
-          // {
-          //   'Flatbread': 'assets/images/flatbread-modified.png',
-          // },
-          // {'Cabbage': 'assets/images/cabbb-modified.png'},
-          // {'Chicken': 'assets/images/chicken-modified.png'},
-          // {'Sauce': 'assets/images/sauce-modified.png'},
-        ],
-        'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
-        highlight: true,
-        false,
-      ),
-    ];
-  }
-
-  List<Food> generatePopularFoods1() {
-    return [
-      Food(
-        'assets/images/smoothie-.png',
-        'Highly Recommended',
-        'Smoothie',
-        0,
-        '10 min',
-        4.4,
-        1500,
-        0,
-        [
-          // {
-          //   'Flatbread': 'assets/images/flatbread-modified.png',
-          // },
-          // {'Cabbage': 'assets/images/cabbb-modified.png'},
-          // {'Chicken': 'assets/images/chicken-modified.png'},
-          // {'Sauce': 'assets/images/sauce-modified.png'},
-        ],
-        'A beverage made by puréeing ingredients in a blender',
-        false,
-      ),
-    ];
-  }
-}
-
-extension UserOrderTotalPrice on Food {
-  int get totalPrice => price * quantity;
 }
 
 class Variation {
   String title;
   String imgURL;
+  int amount;
   bool selected = false;
-  Variation(this.imgURL, this.title);
+  Variation(this.imgURL, this.title, this.amount);
+
+  // int pqProduct(Food food) {
+  //   pq = food.quantity * food.price;
+  //   return pq;
+  // }
 }

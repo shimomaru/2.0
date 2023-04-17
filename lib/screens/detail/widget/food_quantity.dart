@@ -21,17 +21,9 @@ class _FoodQuantityState extends State<FoodQuantity> {
     return format.currencySymbol;
   }
 
-  Future<int> counter() async {
-    final int result = await Future.delayed(const Duration(seconds: 5), () {
-      int result = context.read<FoodCount>().display(widget.food);
-      return result;
-    });
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       height: 40,
       child: Stack(
@@ -70,7 +62,7 @@ class _FoodQuantityState extends State<FoodQuantity> {
               height: double.maxFinite,
               width: 120,
               decoration: BoxDecoration(
-                color: Color(0xff453658),
+                color: const Color(0xff453658),
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Row(
@@ -105,8 +97,8 @@ class _FoodQuantityState extends State<FoodQuantity> {
                     ),
                     child: Text(
                       context
-                          .watch<FoodCount>()
-                          .display(widget.food)
+                          .watch<VarAmount>()
+                          .display(widget.food.selectedVar)
                           .toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
@@ -115,42 +107,32 @@ class _FoodQuantityState extends State<FoodQuantity> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      if (widget.food.selectedVar == null) {
-                        errorDialog(
-                          context,
-                          'ERROR',
-                          'Please select a variation',
-                        );
-                      } else {
-                        if (selectedVars.contains(widget.food.selectedVar)) {
-                          if (userOrders.contains(widget.food)) {
-                            context.read<FoodCount>().increment(widget.food);
-                            context.read<Counter>().update();
-                          } else {
-                            userOrders.add(widget.food);
-                            context.read<Counter>().update();
-                            setState(() {});
-                          }
+                      OrderedItem newOrder = OrderedItem(
+                        widget.food.selectedVar,
+                        widget.food.imgUrl,
+                        widget.food.name,
+                        widget.food.pq,
+                        widget.food.waitTime,
+                        widget.food.price,
+                        widget.food.quantity,
+                      );
+                      if (selectedVars.contains(widget.food.selectedVar)) {
+                        if (orderUp.contains(newOrder)) {
+                          context
+                              .read<VarAmount>()
+                              .increment(widget.food.selectedVar);
                         } else {
-                          // Food newFood = Food(
-                          //   widget.food.imgUrl,
-                          //   widget.food.desc,
-                          //   widget.food.name,
-                          //   widget.food.pq,
-                          //   widget.food.waitTime,
-                          //   widget.food.score,
-                          //   widget.food.price,
-                          //   widget.food.quantity,
-                          //   widget.food.variations,
-                          //   widget.food.about,
-                          //   widget.food.favourited,
-                          // );
-                          selectedVars.add(widget.food.selectedVar);
-                          // userOrders.add(newFood);
-                          userOrders.add(widget.food);
-                          context.read<FoodCount>().increment(widget.food);
-                          context.read<Counter>().update();
+                          // orderUp.add(newOrder);
+                          context
+                              .read<VarAmount>()
+                              .increment(widget.food.selectedVar);
                         }
+                      } else {
+                        selectedVars.add(widget.food.selectedVar);
+                        orderUp.add(newOrder);
+                        context
+                            .read<VarAmount>()
+                            .increment(widget.food.selectedVar);
                       }
                     },
                     child: const Text(

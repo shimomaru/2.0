@@ -11,7 +11,7 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
-  List thyList = userOrders;
+  List thyList = orderUp;
   List newNotification = ['liked', 'follow'];
   List todayNotification = ['follow', 'liked', 'liked'];
   List oldestNotification = ['follow'];

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nle_app/constants/colors.dart';
-import 'package:nle_app/main.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/detail/widget/food_quantity.dart';
 
@@ -15,7 +14,13 @@ class FoodDetail extends StatefulWidget {
 
 class _FoodDetailState extends State<FoodDetail> {
   bool selected = false;
-  int selectedIndex = -1;
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.food.selectedVar = widget.food.variations[selectedIndex];
+  }
 
   @override
   Widget build(BuildContext context) {

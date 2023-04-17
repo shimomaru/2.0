@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nle_app/models/food.dart';
-
-import '../main.dart';
 
 class CartCounter with ChangeNotifier {
   int _count = 0;
@@ -46,14 +43,3 @@ class FinalPrice with ChangeNotifier {
     notifyListeners();
   }
 }
-
-// class TotalPrice with ChangeNotifier {
-//   int ordersTotalPrice = 0;
-
-//   int totalPrice() {
-//     final ordersTotalPrice =
-//         userOrders.fold(0, (sum, order) => sum + order.totalPrice);
-//     notifyListeners();
-//     return ordersTotalPrice;
-//   }
-// }

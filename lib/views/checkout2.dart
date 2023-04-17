@@ -29,10 +29,10 @@ class _ListScrollViewState extends State<ListScrollView> {
 
   @override
   Widget build(BuildContext context) {
-    return userOrders.isNotEmpty
+    return orderUp.isNotEmpty
         ? Expanded(
             child: ListView.separated(
-              itemCount: userOrders.length,
+              itemCount: orderUp.length,
               itemBuilder: ((context, index) {
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -49,7 +49,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                             padding: const EdgeInsets.all(8),
                             width: 130,
                             height: 130,
-                            child: Image.asset(userOrders[index].imgUrl,
+                            child: Image.asset(orderUp[index].imgUrl,
                                 fit: BoxFit.fitHeight),
                           ),
                           Container(
@@ -57,7 +57,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                             width: 60,
                             height: 60,
                             child: Image.asset(
-                              userOrders[index].selectedVar!.imgURL,
+                              selectedVars[index]!.imgURL,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
@@ -80,7 +80,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 25.0),
                                     child: Text(
-                                      userOrders[index].name,
+                                      orderUp[index].name,
                                       style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -104,8 +104,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                                 ],
                               ),
                               Text(
-                                userOrders[index].selectedVar!.title,
-                                // usedVars[userOrders[index]]!.title,
+                                selectedVars[index]!.title,
                                 style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w300,
@@ -114,7 +113,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                               _buildIconText(
                                 Icons.access_time_outlined,
                                 Colors.blue,
-                                userOrders[index].waitTime,
+                                orderUp[index].waitTime,
                               ),
                               Row(
                                 children: [
@@ -126,7 +125,7 @@ class _ListScrollViewState extends State<ListScrollView> {
                                     ),
                                   ),
                                   Text(
-                                    '${userOrders[index].price}',
+                                    '${orderUp[index].price}',
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -174,9 +173,9 @@ class _ListScrollViewState extends State<ListScrollView> {
                                         color: Color(0xff453658),
                                       ),
                                       child: Text(
-                                        context
-                                            .watch<FoodCount>()
-                                            .display(userOrders[index])
+                                        orderUp[index]
+                                            .selectVar
+                                            .amount
                                             .toString(),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -244,7 +243,7 @@ class _NextButtonState extends State<NextButton> {
   @override
   Widget build(BuildContext context) {
     context.watch<FavFood>();
-    return userOrders.isNotEmpty
+    return orderUp.isNotEmpty
         ? Container(
             color: Colors.transparent,
             padding: const EdgeInsets.fromLTRB(10.0, 10.0, 5.0, 5.0),

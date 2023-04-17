@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nle_app/exceptions/exceptions.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/models/stall.dart';
 import 'package:nle_app/screens/main_page.dart';
@@ -18,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => TotalPrice()),
         ChangeNotifierProvider(create: (_) => FoodCount()),
         ChangeNotifierProvider(create: (_) => FavFood()),
+        ChangeNotifierProvider(create: (_) => VarAmount()),
       ],
       child: MyApp(),
     ),
@@ -38,11 +40,43 @@ List<int> notifications = [];
 List<Variation?> selectedVars = [];
 Map<Food, Variation> usedVars = {};
 List<OrderedItem> orderUp = [];
+List<int> bruhhh = [];
+
+class VarAmount with ChangeNotifier {
+  void increment(Variation? variation) {
+    variation!.amount++;
+    notifyListeners();
+  }
+
+  void decrement(Variation variation) {
+    variation.amount--;
+    notifyListeners();
+  }
+
+  int display(Variation variation) {
+    int quantity;
+    quantity = variation.amount;
+    return quantity;
+  }
+
+  void update() {
+    notifyListeners();
+  }
+}
 
 class Counter with ChangeNotifier {
-  int _count = userOrders.fold(
-      0, (previousValue, element) => previousValue + element.quantity);
+  int justdoit() {
+    for (var i = 0; i < orderUp.length; i++) {
+      bruhhh.add(orderUp[i].selectVar.amount);
+    }
 
+    int count =
+        bruhhh.fold(0, (previousValue, element) => previousValue + element);
+    return count;
+  }
+
+  int _count =
+      bruhhh.fold(0, (previousValue, element) => previousValue + element);
   int get count => _count;
 
   void reset() {
@@ -51,48 +85,32 @@ class Counter with ChangeNotifier {
   }
 
   int update() {
-    _count = userOrders.fold(
+    _count = orderUp.fold(
         0, (previousValue, element) => previousValue + element.quantity);
-    notifyListeners();
     return _count;
   }
 }
 
 class TotalPrice with ChangeNotifier {
-  int _ordersTotalPrice = userOrders.fold(0, (a, element) => a + element.price);
+  int _ordersTotalPrice = orderUp.fold(0, (a, element) => a + element.price);
 
   int get ordersTotalPrice => _ordersTotalPrice;
 
   int totalPrice() {
-    _ordersTotalPrice = userOrders.fold(0, (a, element) => a + element.price);
+    _ordersTotalPrice = orderUp.fold(0, (a, element) => a + element.price);
     notifyListeners();
     return _ordersTotalPrice;
   }
 
   void update() {
-    _ordersTotalPrice = userOrders.fold(0, (a, element) => a + element.price);
+    _ordersTotalPrice = orderUp.fold(0, (a, element) => a + element.price);
     notifyListeners();
   }
 }
 
 class FavFood with ChangeNotifier {
   bool favorited(Food food) {
-    // food.favourited = !food.favourited;
-    if (food.favourited == true) {
-      if (favFood.contains(food)) {
-        return food.favourited;
-      } else {
-        favFood.add(food);
-      }
-    } else if (food.favourited == false) {
-      if (favFood.contains(food) == false) {
-        return food.favourited;
-      } else {
-        favFood.remove(food);
-      }
-    } else {}
     bool fud = food.favourited;
-    // notifyListeners();
     return fud;
   }
 
@@ -113,15 +131,23 @@ class FavFood with ChangeNotifier {
   }
 
   int peeQee() {
-    int pqe =
-        userOrders.fold(0, (a, element) => a + element.pqProduct(element));
-    return pqe;
+    int pQ = orderUp.fold(
+        0, (a, element) => a + (element.selectVar.amount * element.price));
+    return pQ;
   }
 
   void update() {
     notifyListeners();
   }
 }
+
+// int loop(List list) {
+//   for (var i = 0; i < list.length; i++) {
+//     int currentValue = i;
+//     list[currentValue];
+//   }
+//   return 0;
+// }
 
 class FoodCount with ChangeNotifier {
   void increment(Food food) {
@@ -179,3 +205,69 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+List<Food> allFood = [
+  Food(
+    'assets/images/sha-modified.png',
+    'Most Recommended',
+    'Shawarma',
+    0,
+    '15 min',
+    4.5,
+    1500,
+    0,
+    [
+      Variation('assets/images/cabbb-modified.png', 'Chicken', 0),
+      Variation('assets/images/chicken-modified.png', 'Beef', 0),
+      Variation('assets/images/flatbread-modified.png', 'Mexican', 0),
+      Variation('assets/images/sauce-modified.png', 'Suya', 0),
+    ],
+    'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
+    highlight: true,
+    false,
+  ),
+  Food(
+    'assets/images/smoothie-.png',
+    'Most Recommended',
+    'Smoothie',
+    0,
+    '7 min',
+    4.5,
+    1500,
+    0,
+    [
+      // {
+      //   'Flatbread': 'assets/images/flatbread-modified.png',
+      // },
+      // {'Cabbage': 'assets/images/cabbb-modified.png'},
+      // {'Chicken': 'assets/images/chicken-modified.png'},
+      // {'Sauce': 'assets/images/sauce-modified.png'},
+    ],
+    'A sandwich of sliced lamb or chicken, vegetables, and often tahini wrapped in pita bread',
+    highlight: true,
+    false,
+  ),
+];
+
+List<Food> popularFood = [
+  Food(
+    'assets/images/smoothie-.png',
+    'Highly Recommended',
+    'Smoothie',
+    0,
+    '10 min',
+    4.4,
+    1500,
+    0,
+    [
+      // {
+      //   'Flatbread': 'assets/images/flatbread-modified.png',
+      // },
+      // {'Cabbage': 'assets/images/cabbb-modified.png'},
+      // {'Chicken': 'assets/images/chicken-modified.png'},
+      // {'Sauce': 'assets/images/sauce-modified.png'},
+    ],
+    'A beverage made by puréeing ingredients in a blender',
+    false,
+  ),
+];

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nle_app/constants/colors.dart';
 import 'package:nle_app/constants/routes.dart';
 import 'package:nle_app/main.dart';
 import 'package:nle_app/models/food.dart';
 import 'package:nle_app/screens/detail/widget/food_detail.dart';
 import 'package:nle_app/screens/detail/widget/food_img.dart';
-import 'package:nle_app/screens/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class DetailPage extends StatefulWidget {
@@ -19,6 +17,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
+    context.watch<Counter>();
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 65,
@@ -81,11 +80,11 @@ class _DetailPageState extends State<DetailPage> {
           ],
         ),
       ),
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         width: 100,
         height: 56,
         child: RawMaterialButton(
-          fillColor: Color(0xff453658),
+          fillColor: const Color(0xff453658),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
           ),
@@ -94,7 +93,7 @@ class _DetailPageState extends State<DetailPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                icon: Icon(Icons.shopping_cart_outlined),
+                icon: const Icon(Icons.shopping_cart_outlined),
                 color: Colors.black,
                 onPressed: () {
                   Navigator.of(context).pushNamed(cartRoute);
@@ -108,7 +107,7 @@ class _DetailPageState extends State<DetailPage> {
                   shape: BoxShape.circle,
                 ),
                 child: Text(
-                  context.watch<Counter>().count.toString(), ////
+                  context.watch<Counter>().justdoit().toString(),
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,

@@ -12,7 +12,7 @@ class FavPage extends StatefulWidget {
 }
 
 class _FavPageState extends State<FavPage> {
-  List thyList = userOrders;
+  List thyList = orderUp;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

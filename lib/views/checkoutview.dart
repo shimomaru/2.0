@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nle_app/constants/colors.dart';
 import 'package:nle_app/main.dart';
-import 'package:nle_app/screens/detail/detail.dart';
-import 'package:nle_app/screens/widgets/custom_app_bar.dart';
-import 'package:nle_app/views/checkout.dart';
 import 'package:nle_app/views/checkout2.dart';
 import 'package:provider/provider.dart';
-import '../models/food.dart';
 
 class CheckInfo extends StatefulWidget {
   const CheckInfo({super.key});
@@ -21,7 +16,7 @@ class _CheckInfoState extends State<CheckInfo> {
     Navigator.of(context).pop();
   }
 
-  List thyList = userOrders;
+  List thyList = orderUp;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +26,7 @@ class _CheckInfoState extends State<CheckInfo> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 24.0),
           child: Container(
-            // ignore: prefer_const_constructors
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
             ),
@@ -46,7 +40,7 @@ class _CheckInfoState extends State<CheckInfo> {
           ),
         ),
       ),
-      backgroundColor: Color(0xff453658),
+      backgroundColor: const Color(0xff453658),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
